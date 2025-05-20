@@ -11,35 +11,41 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# === BASE CONFIGURATION ===
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-+pexfp+nvz)ors1ug@_0wfto5ssk&+!-4z83*hzl*(&1o6ve)i'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
+# === APPLICATIONS ===
 INSTALLED_APPS = [
+    # Applications locales
     'front',
+    'quiz',
+
+    # Applications Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Applications tierces
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'social_django',
 ]
 
+# === MIDDLEWARE ===
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -48,18 +54,40 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
-ROOT_URLCONF = 'gandalhub.urls'
+# === AUTHENTICATION BACKENDS ===
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
+# === SITE CONFIGURATION ===
+SITE_ID = 1
+
+# === SOCIAL AUTH CONFIGURATION ===
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '741399796382-vvot5vc6i8lm53afkfoj10i3qhps3r9e.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+# === URL CONFIGURATION ===
+ROOT_URLCONF = 'gandalhub.urls'
+ACCOUNT_FORMS = {
+    'signup': 'front.forms.CustomSignupForm',  # ✅ chemin absolu correct
+}
+
+
+
+# === TEMPLATES CONFIGURATION ===
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates/front'],  # Assurez-vous que le dossier "templates" existe
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.request',
+                'django.template.context_processors.request',  # Nécessaire pour Django Allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -67,12 +95,10 @@ TEMPLATES = [
     },
 ]
 
+# === WSGI APPLICATION ===
 WSGI_APPLICATION = 'gandalhub.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+# === DATABASE CONFIGURATION ===
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -80,10 +106,7 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
+# === PASSWORD VALIDATION ===
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -99,10 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
-
+# === INTERNATIONALIZATION ===
 LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'UTC'
@@ -111,22 +131,33 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
+# === STATIC FILES CONFIGURATION ===
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'front/static'),
 ]
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
+# === REDIRECTION CONFIGURATION ===
+LOGIN_REDIRECT_URL = '/'  # Redirige après connexion
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirige après déconnexion
+LOGIN_URL = '/'  # URL de connexion
+LOGOUT_REDIRECT_URL = '/'  # Redirige après déconnexion
+
+# === DEFAULT PRIMARY KEY FIELD TYPE ===
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# === EMAIL CONFIGURATION ===
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'votre_adresse_email@gmail.com'
+EMAIL_HOST_PASSWORD = 'votre_mot_de_passe'
 
-import os
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'front/static')]
+

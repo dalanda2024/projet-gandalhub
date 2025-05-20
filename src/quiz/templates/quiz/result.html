@@ -1,0 +1,30 @@
+{% extends 'front/base.html' %}
+
+{% block content %}
+<div class="quiz-result-page container">
+    <h2 class="mb-3">Résultat du quiz : {{ quiz.title }}</h2>
+    <p>Score : <span class="fw-bold">{{ score }} / {{ total }}</span></p>
+    <p><strong>Recommandation :</strong> {{ recommendation }}</p>
+    <hr>
+    <h3>Résultats détaillés</h3>
+    <p>Vous avez répondu à {{ total }} questions.</p>
+    {% for question, correct, answer, explanation, user_answer in results %}
+        <div class="quiz-result mb-4 p-3">
+            <h4>{{ question.text }}</h4>
+            {% if correct %}
+                <p class="correct">✅ Bonne réponse !</p>
+            {% else %}
+                <p class="incorrect">❌ Mauvaise réponse. Votre réponse : {{ user_answer }}</p>
+            {% endif %}
+            <p><strong>Réponse correcte :</strong> {{ answer }}</p>
+            <p><em>Explication :</em> {{ explanation }}</p>
+        </div>
+    {% endfor %}
+    <p>
+        <a href="{% url 'select_quiz' %}" class="btn-link">← Revenir à la liste des quiz</a>
+    </p>
+    <p>
+        <a href="{% url 'start_quiz' quiz.id %}" class="btn-link">🔄 Recommencer ce quiz</a>
+    </p>
+</div>
+{% endblock %}

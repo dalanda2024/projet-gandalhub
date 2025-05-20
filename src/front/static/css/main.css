@@ -1922,3 +1922,91 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/* Auth & Form Pages */
+.auth-container, .form-page {
+  max-width: 400px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(40, 167, 69, 0.08);
+  padding: 32px 28px 24px 28px;
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #28a745;
+  text-align: center;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f8f9fa;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #28a745;
+  outline: none;
+}
+
+.btn-primary, .btn-success {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  transition: background 0.2s;
+  margin-top: 10px;
+}
+
+.btn-primary:hover, .btn-success:hover {
+  background: #218838;
+  color: #fff;
+}
+
+.links {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.links a {
+  color: #28a745;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 0.95em;
+  margin-top: 4px;
+  display: block;
+}

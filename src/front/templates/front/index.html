@@ -51,16 +51,17 @@
         <ul>
           <li><a href="{% url 'index' %}" class="active">Accueil<br></a></li>
           <li><a href="{% url 'about' %}">A propos</a></li>
-          <li><a href="{% url 'courses' %}" >Cours</a></li>
+          <!--<li><a href="{% url 'courses' %}" >Cours</a></li>-->
           <li><a href="{% url 'trainers' %}" >Formateurs</a></li>
           <li><a href="{% url 'events' %}" >Événements</a></li>
           <li><a href="{% url 'pricing' %}" >Tarifs</a></li>
           <li><a href="{% url 'contact' %}" >Contact</a></li>
+          <li><a href="{% url 'account_login' %}" >Connexion</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="{% url 'courses' %}">Démarrer</a>
+      <a class="btn-getstarted" href="{% url 'account_login' %}">Démarrer</a>
 
     </div>
   </header>
@@ -76,7 +77,7 @@
         <h2 data-aos="fade-up" data-aos-delay="100">GandalHub<br>L’innovation commence ici,<br>en Guinée</h2>
         <p data-aos="fade-up" data-aos-delay="200">Une plateforme éducative pour révéler le potentiel digital guinéen au monde entier</p>
         <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="{% url 'courses' %}" class="btn-get-started">Démarrer</a>
+          <a class="btn-getstarted" href="{% url 'account_login' %}">Démarrer</a>
         </div>
       </div>
 
@@ -314,7 +315,7 @@
           </div> <!-- End Course Item-->
 
         </div>
-        <a href="{% url 'courses' %}" class="voirplus" style="margin-top: 50px; margin-left: 500px;"><span>Voir Plus</span><i class="bi bi-arrow-right"></i></a>
+        <a href="{% url 'account_login' %}" class="voirplus" style="margin-top: 50px; margin-left: 500px;"><span>Voir Plus</span><i class="bi bi-arrow-right"></i></a>
       </div>
       
     </section><!-- /Courses Section -->

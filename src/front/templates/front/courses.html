@@ -60,7 +60,8 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="{% url 'courses' %}">Démarrer</a>
+      <a class="btn-getstarted" href="{% url 'account_login' %}">Démarrer</a>
+
 
     </div>
   </header>
@@ -75,6 +76,7 @@
             <div class="col-lg-8">
               <h1>Cours</h1>
               <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+              
             </div>
           </div>
         </div>
@@ -84,6 +86,7 @@
           <ol>
             <li><a href="{% url 'index' %}">Accueil</a></li>
             <li class="current">Cours</li>
+            <p><a href="{% url 'dashboard' %}">← Retour au tableau de bord</a></p>
           </ol>
         </div>
       </nav>
@@ -95,84 +98,73 @@
       <div class="container">
 
         <div class="row">
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="course-item">
-              <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Web Development</p>
-                  <p class="price">$169</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="course-item">
-              <img src="{% static 'img/course-2.jpg' %}"  class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Marketing</p>
-                  <p class="price">$250</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Search Engine Optimization</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-2-2.jpg' %}"  class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Lana</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;35
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;42
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="course-item">
-              <img src="{% static 'img/course-3.jpg' %}"  class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Content</p>
-                  <p class="price">$180</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Copywriting</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-3-2.jpg' %}"  class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Brandon</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;20
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;85
+          {% if courses_data %}
+            {% for item in courses_data %}
+              {% with course=item.course quizzes_by_level=item.quizzes_by_level %}
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch mb-4" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="course-item w-100">
+                  {% if course.image %}
+                    <img src="{{ course.image.url }}" class="img-fluid" alt="{{ course.title }}">
+                  {% else %}
+                    <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="{{ course.title }}">
+                  {% endif %}
+                  <div class="course-content">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <p class="category">{{ course.category }}</p>
+                      <p class="price">{{ course.price|default:'Gratuit' }}</p>
+                    </div>
+                    <h3>{{ course.title }}</h3>
+                    <p class="description">{{ course.description|truncatewords:20 }}</p>
+                    <div class="trainer d-flex justify-content-between align-items-center">
+                      <div class="trainer-profile d-flex align-items-center">
+                        {% if course.trainer and course.trainer.photo %}
+                          <img src="{{ course.trainer.photo.url }}" class="img-fluid" alt="{{ course.trainer }}">
+                        {% else %}
+                          <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="Trainer">
+                        {% endif %}
+                        <a href="#" class="trainer-link">{{ course.trainer }}</a>
+                      </div>
+                      <div class="trainer-rank d-flex align-items-center">
+                        <i class="bi bi-person user-icon"></i>&nbsp;{{ course.students_count|default:0 }}
+                        &nbsp;&nbsp;
+                        <i class="bi bi-heart heart-icon"></i>&nbsp;{{ course.likes|default:0 }}
+                      </div>
+                    </div>
+                    <div class="mt-3">
+                      {% if course.selected and course.selected_level %}
+                        {% for level, quizzes in quizzes_by_level.items %}
+                          {% if level == course.selected_level %}
+                            <div class="mb-2">
+                              <span class="badge bg-secondary">{{ level }}</span>
+                              <ul class="list-group list-group-flush">
+                                {% if quizzes %}
+                                  {% for quiz in quizzes %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                      <span>{{ quiz.title }}</span>
+                                      <a href="{% url 'start_quiz' quiz.id %}" class="btn btn-sm btn-outline-success">Démarrer</a>
+                                    </li>
+                                  {% endfor %}
+                                {% else %}
+                                  <li class="list-group-item px-0 text-muted">Aucun quiz pour ce niveau.</li>
+                                {% endif %}
+                              </ul>
+                            </div>
+                          {% endif %}
+                        {% endfor %}
+                      {% else %}
+                        <div class="alert alert-info">Veuillez sélectionner un cours et un niveau pour afficher les quiz correspondants.</div>
+                      {% endif %}
+                    </div>
                   </div>
                 </div>
               </div>
+              {% endwith %}
+            {% endfor %}
+          {% else %}
+            <div class="col-12">
+              <div class="alert alert-info text-center">Aucun cours disponible pour le moment.</div>
             </div>
-          </div> <!-- End Course Item-->
+          {% endif %}
         </div>
 
         <div class="row" style="margin-top: 50px;">

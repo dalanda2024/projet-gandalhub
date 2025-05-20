@@ -1,0 +1,21 @@
+{% extends 'front/base.html' %}
+
+{% block content %}
+<div class="quiz-user-photos container">
+    <h1 class="mb-4">Photos des utilisateurs</h1>
+    <div class="row">
+        {% for profile in profiles %}
+            <div class="col-md-4 mb-4">
+                <div class="card user-profile h-100 text-center p-3">
+                    <h3 class="mb-3">{{ profile.user.username }}</h3>
+                    {% if profile.photo %}
+                        <img src="{{ profile.photo.url }}" alt="Photo de {{ profile.user.username }}" class="img-fluid rounded-circle mb-2" style="max-width:120px;">
+                    {% else %}
+                        <p class="text-muted">Aucune photo disponible</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

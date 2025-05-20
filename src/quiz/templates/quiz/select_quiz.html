@@ -1,0 +1,105 @@
+{% extends 'front/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="select-quiz-container container">
+    <h2>Sélectionnez un quiz</h2>
+    <form method="get" class="row g-3 mb-4">
+        <div class="col-md-5">
+            <label for="course_id" class="form-label">Cours</label>
+            <select name="course_id" id="course_id" class="form-select">
+                <option value="">-- Tous les cours --</option>
+                {% for course in courses %}
+                    <option value="{{ course.id }}" {% if course.id == selected_course %}selected{% endif %}>{{ course.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-5">
+            <label for="level" class="form-label">Niveau</label>
+            <select name="level" id="level" class="form-select">
+                <option value="">-- Tous les niveaux --</option>
+                {% for lvl in levels %}
+                    <option value="{{ lvl }}" {% if lvl == selected_level %}selected{% endif %}>{{ lvl }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-success w-100">Filtrer</button>
+        </div>
+    </form>
+
+    <script>
+    // Rafraîchit la liste des niveaux selon le cours sélectionné (optionnel, si besoin d'un filtrage dynamique JS)
+    document.getElementById('course_id').addEventListener('change', function() {
+        this.form.submit();
+    });
+    document.getElementById('level').addEventListener('change', function() {
+        this.form.submit();
+    });
+    </script>
+
+    {% if selected_course_obj %}
+    <div class="card mb-4">
+        <div class="row g-0 align-items-center">
+            <div class="col-md-2">
+                {% if selected_course_obj.image %}
+                    <img src="{{ selected_course_obj.image.url }}" class="img-fluid rounded-start" alt="{{ selected_course_obj.title }}">
+                {% else %}
+                    <img src="{% static 'img/course-1.jpg' %}" class="img-fluid rounded-start" alt="Course image">
+                {% endif %}
+            </div>
+            <div class="col-md-10">
+                <div class="card-body">
+                    <h4 class="card-title mb-1">{{ selected_course_obj.title }}</h4>
+                    <p class="mb-1"><span class="badge bg-primary">{{ selected_course_obj.category }}</span> 
+                        {% if selected_course_obj.price %}<span class="badge bg-warning text-dark">{{ selected_course_obj.price }}</span>{% endif %}
+                    </p>
+                    <p class="mb-1 text-muted">{{ selected_course_obj.description|truncatewords:20 }}</p>
+                    <p class="mb-0"><small>Formateur : {{ selected_course_obj.trainer }}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <ul class="list-group mb-4">
+        {% for quiz in quizzes %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="{% url 'start_quiz' quiz.id %}" class="fw-bold">{{ quiz.title }}</a>
+                    <span class="badge bg-success ms-2">{{ quiz.level }}</span>
+                    {% if quiz.description %}<div class="text-muted small">{{ quiz.description|truncatewords:15 }}</div>{% endif %}
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item text-center">Aucun quiz disponible pour ce cours ou ce niveau.</li>
+        {% endfor %}
+    </ul>
+
+    {# Affichage optionnel de tous les quiz par cours et niveau si aucun filtre sélectionné #}
+    {% if not selected_course and not selected_level %}
+        <div class="mt-4">
+            <h5>Quiz disponibles par cours et niveau :</h5>
+            {% for item in course_quiz_map %}
+                <div class="mb-3">
+                    <strong>{{ item.course.title }}</strong>
+                    <ul>
+                        {% for lvl, quizlist in item.quizzes_by_level.items %}
+                            {% if quizlist %}
+                                <li>{{ lvl }} :
+                                    <ul>
+                                        {% for quiz in quizlist %}
+                                            <li><a href="{% url 'start_quiz' quiz.id %}">{{ quiz.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <p><a href="{% url 'dashboard' %}" class="btn-link">← Retour au tableau de bord</a></p>
+</div>
+{% endblock %}

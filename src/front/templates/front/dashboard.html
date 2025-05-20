@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - GandalHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .dashboard {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid #ddd;
+        }
+        .user-info h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #333;
+        }
+        .user-info p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #666;
+        }
+        .links {
+            margin-top: 30px;
+        }
+        .links a {
+            display: inline-block;
+            margin: 10px 15px;
+            padding: 12px 20px;
+            background-color: #5fcf80;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .links a:hover {
+            background-color: #5fcf80;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Avatar de l'utilisateur -->
+        {% if user.photo %}
+            <img src="{{ user.photo.url }}" class="avatar" alt="Photo de profil">
+        {% else %}
+            <img src="https://via.placeholder.com/120" class="avatar" alt="Avatar par défaut">
+        {% endif %}
+
+        <!-- Informations utilisateur -->
+        <div class="user-info">
+            <h2>Bonjour {{ user.first_name|default:request.user.username }} 👋</h2>
+            <p>{{ user.email }}</p>
+        </div>
+
+        <!-- Liens d'action -->
+        <div class="links">
+            <a href="{% url 'account_logout' %}">Se déconnecter</a>
+            <a href="/courses/">Voir les cours</a>
+            <a href="/profile/">Mon profil</a>
+            <a href="{% url 'user_progress' %}">Mon historique</a>
+        </div>
+    </div>
+</body>
+</html>
