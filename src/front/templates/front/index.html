@@ -9,6 +9,11 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
+  <!-- Lien boostrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
   <!-- Favicons -->
   <link  href="{% static 'img/logo_gandalhub1.png' %}" >
   <link href="{% static 'img/logo_gandalhub1.png' %}" >
@@ -27,14 +32,10 @@
 
   <!-- Main CSS File -->
   <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  <!-- Inclure le CSS de Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
 
-  <!-- =======================================================
-  * Template Name: Mentor
-  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  
 </head>
 
 <body class="index-page">
@@ -60,8 +61,6 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="{% url 'courses' %}">Démarrer</a>
-
     </div>
   </header>
 
@@ -70,17 +69,18 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img  src="{% static 'img/imageaccueil.jpg' %}"  alt="" data-aos="fade-in">
+      <img  src="{% static 'img/imageaccueil1.jpg' %}"  alt="" data-aos="fade-in">
 
       <div class="container">
-        <h2 data-aos="fade-up" data-aos-delay="100">GandalHub<br>L’innovation commence ici,<br>en Guinée</h2>
-        <p data-aos="fade-up" data-aos-delay="200">Une plateforme éducative pour révéler le potentiel digital guinéen au monde entier</p>
+        <h2 data-aos="fade-up" data-aos-delay="100"> GandalHub<br><span style="color:#5fcf80;"> L’innovation commence ici,</span><br>en Guinée</h2>
+        <p data-aos="fade-up" data-aos-delay="200">Une plateforme éducative pour révéler le potentiel guinéen au monde entier</p>
         <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
           <a href="{% url 'courses' %}" class="btn-get-started">Démarrer</a>
         </div>
       </div>
 
-    </section><!-- /Hero Section -->
+    </section>
+    <!-- /Hero Section -->
 
     <!-- Counts Section -->
     <section id="counts" class="section counts light-background">
@@ -136,7 +136,7 @@
         <div class="row gy-4">
 
           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
-            <img  src="{% static 'img/apropos.jpg' %}"  class="img-fluid" alt="">
+            <img  src="{% static 'img/apropos.jpg' %}"  class="img-fluid" alt="" style="margin-top: -80px;">
           </div>
 
           <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
@@ -234,85 +234,83 @@
       <div class="container">
 
         <div class="row">
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <!-- Cuisine Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch course-item" data-category="cuisine" data-search="cuisine gastronomie recettes" data-aos="zoom-in" data-aos-delay="100">
             <div class="course-item">
-              <img  src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
+              <img src="{% static 'img/CuisineAfricaineTraditionnelle.jpg' %}" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Development Web</p>
-                  <p class="price">$169</p>
+                  <p class="category">Cuisine</p>
+                  <p class="price">99 000 FG</p>
                 </div>
-
-                <h3><a href="{% url 'course_details' %}">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="{% url 'course_details' %}">Cuisine Africaine Traditionnelle</a></h3>
+                <p class="description">Maîtrisez les plats emblématiques de la cuisine africaine avec nos chefs expérimentés.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img  src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
+                    <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Chef Aminata</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
+                    <i class="bi bi-person user-icon"></i>&nbsp;120
                     &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;89
                   </div>
                 </div>
               </div>
             </div>
           </div> <!-- End Course Item-->
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+          <!-- Make Up Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0 course-item" data-category="makeup" data-search="maquillage beauté makeup" data-aos="zoom-in" data-aos-delay="200">
             <div class="course-item">
-              <img  src="{% static 'img/course-2.jpg' %}" class="img-fluid" alt="...">
+              <img src="{% static 'img/MaquillageProfessionnel.jpg' %}" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Marketing</p>
-                  <p class="price">$250</p>
+                  <p class="category">Make Up</p>
+                  <p class="price">75 000 FG</p>
                 </div>
-
-                <h3><a href="{% url 'course_details' %}">Search Engine Optimization</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="{% url 'course_details' %}">Maquillage Professionnel</a></h3>
+                <p class="description">Apprenez les techniques de maquillage pour toutes les occasions et types de peau.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img  src="{% static 'img/trainers/trainer-2-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Lana</a>
+                    <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Fatoumata B.</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;35
+                    <i class="bi bi-person user-icon"></i>&nbsp;95
                     &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;42
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;64
                   </div>
                 </div>
               </div>
             </div>
           </div> <!-- End Course Item-->
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+          <!-- Couture Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0 course-item" data-category="couture" data-search="couture mode design" data-aos="zoom-in" data-aos-delay="300">
             <div class="course-item">
-              <img  src="{% static 'img/course-3.jpg' %}" class="img-fluid" alt="...">
+              <img src="{% static 'img/CoutureModerneAfricaine.jpg' %}" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Content</p>
-                  <p class="price">$180</p>
+                  <p class="category">Couture</p>
+                  <p class="price">120 000 FG</p>
                 </div>
-
-                <h3><a href="{% url 'course_details' %}">Copywriting</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="{% url 'course_details' %}">Couture Moderne Africaine</a></h3>
+                <p class="description">Créez des vêtements élégants inspirés des motifs traditionnels africains.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img  src="{% static 'img/trainers/trainer-3-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Brandon</a>
+                    <img src="{% static 'img/trainers/trainer-3-2.jpg' %}" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Mariam D.</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;20
+                    <i class="bi bi-person user-icon"></i>&nbsp;78
                     &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;85
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;53
                   </div>
                 </div>
               </div>
             </div>
           </div> <!-- End Course Item-->
-
         </div>
         <a href="{% url 'courses' %}" class="voirplus" style="margin-top: 50px; margin-left: 500px;"><span>Voir Plus</span><i class="bi bi-arrow-right"></i></a>
       </div>
@@ -332,7 +330,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
-              <img  src="{% static 'img/trainers/trainer-1.jpg' %}" class="img-fluid" alt="">
+              <img  src="{% static 'img/trainers/daouda.jpg' %}" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>Daouda Bah</h4>
                 <span>Dévéloppeur Web</span>
@@ -351,7 +349,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="member">
-              <img  src="{% static 'img/trainers/trainer-2.jpg' %}" class="img-fluid" alt="">
+              <img  src="{% static 'img/trainers/dalanda.jpg' %}" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>Sory Dalanda Baldé</h4>
                 <span>Community Manager</span>
@@ -370,7 +368,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
-              <img  src="{% static 'img/trainers/trainer-3.jpg' %}" class="img-fluid" alt="">
+              <img  src="{% static 'img/trainers/jeanpaul.jpg' %}" class="img-fluid" alt="">
               <div class="member-content">
                 <h4>Jean Paul Béavogui</h4>
                 <span>Ingénieur Réseau</span>

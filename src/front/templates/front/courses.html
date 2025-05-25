@@ -28,13 +28,7 @@
   <!-- Main CSS File -->
   <link href="{% static 'css/main.css' %}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Mentor
-  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  
 </head>
 
 <body class="courses-page">
@@ -43,7 +37,6 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
       <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="{% static 'img/logo_gandalhub1.png' %}" alt="logo_gandalhub">
       </a>
 
@@ -51,16 +44,14 @@
         <ul>
           <li><a href="{% url 'index' %}">Accueil<br></a></li>
           <li><a href="{% url 'about' %}">A propos</a></li>
-          <li><a href="{% url 'courses' %}" class="active" >Cours</a></li>
-          <li><a href="{% url 'trainers' %}" >Formateurs</a></li>
-          <li><a href="{% url 'events' %}" >Événements</a></li>
-          <li><a href="{% url 'pricing' %}" >Tarifs</a></li>
-          <li><a href="{% url 'contact' %}" >Contact</a></li>
+          <li><a href="{% url 'courses' %}" class="active">Cours</a></li>
+          <li><a href="{% url 'trainers' %}">Formateurs</a></li>
+          <li><a href="{% url 'events' %}">Événements</a></li>
+          <li><a href="{% url 'pricing' %}">Tarifs</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-
-      <a class="btn-getstarted" href="{% url 'courses' %}">Démarrer</a>
 
     </div>
   </header>
@@ -74,7 +65,7 @@
           <div class="row d-flex justify-content-center text-center">
             <div class="col-lg-8">
               <h1>Cours</h1>
-              <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+              <p class="mb-0">Découvrez notre sélection de cours pour développer vos compétences. Trouvez celui qui correspond à vos besoins.</p>
             </div>
           </div>
         </div>
@@ -94,334 +85,277 @@
 
       <div class="container">
 
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="course-item">
-              <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Web Development</p>
-                  <p class="price">$169</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
-                  </div>
-                </div>
-              </div>
+        <!-- Search and Filter Section -->
+        <div class="row mb-4" data-aos="fade-up">
+          <div class="col-md-8 mx-auto mb-4">
+            <div class="search-container">
+              <input type="text" id="course-search" class="search-input" placeholder="Rechercher un cours...">
+              <button class="search-button"><i class="bi bi-search"></i></button>
             </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="course-item">
-              <img src="{% static 'img/course-2.jpg' %}"  class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Marketing</p>
-                  <p class="price">$250</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Search Engine Optimization</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-2-2.jpg' %}"  class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Lana</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;35
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;42
-                  </div>
-                </div>
-              </div>
+          </div>
+          
+          <div class="col-12">
+            <div class="filter-container">
+              <button class="filter-btn active" data-filter="all">Tous</button>
+              <button class="filter-btn" data-filter="cuisine">Cuisine</button>
+              <button class="filter-btn" data-filter="makeup">Make Up</button>
+              <button class="filter-btn" data-filter="couture">Couture</button>
+              <button class="filter-btn" data-filter="patisserie">Pâtisserie</button>
+              <button class="filter-btn" data-filter="informatique">Informatique</button>
+              <button class="filter-btn" data-filter="gestion-projet">Gestion Projet</button>
+              <button class="filter-btn" data-filter="reseau">Réseau</button>
+              <button class="filter-btn" data-filter="developpement-personnel">Développement Personnel</button>
+              <button class="filter-btn" data-filter="entreprenariat">Entreprenariat</button>
             </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="course-item">
-              <img src="{% static 'img/course-3.jpg' %}"  class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Content</p>
-                  <p class="price">$180</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Copywriting</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-3-2.jpg' %}"  class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Brandon</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;20
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;85
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
+          </div>
         </div>
 
-        <div class="row" style="margin-top: 50px;">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <!-- Courses Grid -->
+        <div class="row courses-container">
+
+          <!-- Cuisine Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch course-item" data-category="cuisine" data-search="cuisine gastronomie recettes" data-aos="zoom-in" data-aos-delay="100">
             <div class="course-item">
-              <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
+              <img src="{% static 'img/CuisineAfricaineTraditionnelle.jpg' %}" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Web Development</p>
-                  <p class="price">$169</p>
+                  <p class="category">Cuisine</p>
+                  <p class="price">99 000 FG</p>
                 </div>
-
-                <h3><a href="{% url 'course_details' %}">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="{% url 'course_details' %}">Cuisine Africaine Traditionnelle</a></h3>
+                <p class="description">Maîtrisez les plats emblématiques de la cuisine africaine avec nos chefs expérimentés.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
+                    <a href="" class="trainer-link">Chef Aminata</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
+                    <i class="bi bi-person user-icon"></i>&nbsp;120
                     &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;89
                   </div>
                 </div>
               </div>
             </div>
           </div> <!-- End Course Item-->
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <!-- Make Up Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0 course-item" data-category="makeup" data-search="maquillage beauté makeup" data-aos="zoom-in" data-aos-delay="200">
             <div class="course-item">
-              <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
+              <img src="{% static 'img/MaquillageProfessionnel.jpg' %}" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Web Development</p>
-                  <p class="price">$169</p>
+                  <p class="category">Make Up</p>
+                  <p class="price">75 000 FG</p>
                 </div>
-
-                <h3><a href="{% url 'course_details' %}">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="{% url 'course_details' %}">Maquillage Professionnel</a></h3>
+                <p class="description">Apprenez les techniques de maquillage pour toutes les occasions et types de peau.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
+                    <a href="" class="trainer-link">Fatoumata B.</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
+                    <i class="bi bi-person user-icon"></i>&nbsp;95
                     &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;64
                   </div>
                 </div>
               </div>
             </div>
           </div> <!-- End Course Item-->
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <!-- Couture Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0 course-item" data-category="couture" data-search="couture mode design" data-aos="zoom-in" data-aos-delay="300">
             <div class="course-item">
-              <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
+              <img src="{% static 'img/CoutureModerneAfricaine.jpg' %}" class="img-fluid" alt="...">
               <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Web Development</p>
-                  <p class="price">$169</p>
+                  <p class="category">Couture</p>
+                  <p class="price">120 000 FG</p>
                 </div>
-
-                <h3><a href="{% url 'course_details' %}">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                <h3><a href="{% url 'course_details' %}">Couture Moderne Africaine</a></h3>
+                <p class="description">Créez des vêtements élégants inspirés des motifs traditionnels africains.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
+                    <img src="{% static 'img/trainers/trainer-3-2.jpg' %}" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Mariam D.</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
+                    <i class="bi bi-person user-icon"></i>&nbsp;78
                     &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;53
                   </div>
                 </div>
               </div>
             </div>
           </div> <!-- End Course Item-->
+
+          <!-- Pâtisserie Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 course-item" data-category="patisserie" data-search="patisserie desserts gateaux" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="{% static 'img/PatisserieAfricaine.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Pâtisserie</p>
+                  <p class="price">85 000 FG</p>
+                </div>
+                <h3><a href="{% url 'course_details' %}">Pâtisserie Africaine</a></h3>
+                <p class="description">Découvrez les secrets des desserts traditionnels africains et modernes.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Chef Oumar</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon"></i>&nbsp;62
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;47
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <!-- Informatique Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 course-item" data-category="informatique" data-search="informatique bureautique ordinateur" data-aos="zoom-in" data-aos-delay="200">
+            <div class="course-item">
+              <img src="{% static 'img/BureautiqueEssentielle.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Informatique</p>
+                  <p class="price">150 000 FG</p>
+                </div>
+                <h3><a href="{% url 'course_details' %}">Bureautique Essentielle</a></h3>
+                <p class="description">Maîtrisez Word, Excel et PowerPoint pour le monde professionnel moderne.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static 'img/trainers/trainer-2-2.jpg' %}" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Ibrahima K.</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon"></i>&nbsp;135
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;92
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <!-- Gestion Projet Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 course-item" data-category="gestion-projet" data-search="gestion projet management" data-aos="zoom-in" data-aos-delay="300">
+            <div class="course-item">
+              <img src="{% static 'img/GestiondeProjetAgile.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Gestion Projet</p>
+                  <p class="price">200 000 FG</p>
+                </div>
+                <h3><a href="{% url 'course_details' %}">Gestion de Projet Agile</a></h3>
+                <p class="description">Méthodologies modernes pour mener à bien vos projets professionnels.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static 'img/trainers/trainer-3-2.jpg' %}" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Aissatou D.</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon"></i>&nbsp;88
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;76
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <!-- Réseau Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 course-item" data-category="reseau" data-search="reseau informatique cisco" data-aos="zoom-in" data-aos-delay="100">
+            <div class="course-item">
+              <img src="{% static 'img/RéseauxInformatiques.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Réseau</p>
+                  <p class="price">250 000 FG</p>
+                </div>
+                <h3><a href="{% url 'course_details' %}">Réseaux Informatiques</a></h3>
+                <p class="description">Apprenez à configurer et administrer des réseaux informatiques professionnels.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Mohamed C.</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon"></i>&nbsp;72
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;58
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <!-- Développement Personnel Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 course-item" data-category="developpement-personnel" data-search="developpement personnel croissance" data-aos="zoom-in" data-aos-delay="200">
+            <div class="course-item">
+              <img src="{% static 'img/DéveloppementPersonnel.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Développement</p>
+                  <p class="price">80 000 FG</p>
+                </div>
+                <h3><a href="{% url 'course_details' %}">Développement Personnel</a></h3>
+                <p class="description">Boostez votre confiance en soi et améliorez vos compétences relationnelles.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static 'img/trainers/trainer-2-2.jpg' %}" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Mamadou B.</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon"></i>&nbsp;105
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;89
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
+          <!-- Entreprenariat Course 1 -->
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 course-item" data-category="entreprenariat" data-search="entreprenariat business startup" data-aos="zoom-in" data-aos-delay="300">
+            <div class="course-item">
+              <img src="{% static 'img/Entreprenariat.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <p class="category">Entreprenariat</p>
+                  <p class="price">180 000 FG</p>
+                </div>
+                <h3><a href="{% url 'course_details' %}">Lancez Votre Startup</a></h3>
+                <p class="description">De l'idée à la réalisation, toutes les étapes pour créer votre entreprise.</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static 'img/trainers/trainer-3-2.jpg' %}" class="img-fluid" alt="">
+                    <a href="" class="trainer-link">Fatou N.</a>
+                  </div>
+                  <div class="trainer-rank d-flex align-items-center">
+                    <i class="bi bi-person user-icon"></i>&nbsp;142
+                    &nbsp;&nbsp;
+                    <i class="bi bi-heart heart-icon"></i>&nbsp;97
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Course Item-->
+
         </div>
 
-        <div class="row" style="margin-top: 50px;">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="course-item">
-              <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Web Development</p>
-                  <p class="price">$169</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="course-item">
-              <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Web Development</p>
-                  <p class="price">$169</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="course-item">
-              <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Web Development</p>
-                  <p class="price">$169</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Website Design</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Antonio</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;65
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-        </div>
-
-        <div class="row" style="margin-top: 50px;">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="course-item">
-              <img src="{% static 'img/course-2.jpg' %}"  class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Marketing</p>
-                  <p class="price">$250</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Search Engine Optimization</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-2-2.jpg' %}"  class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Lana</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;35
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;42
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="course-item">
-              <img src="{% static 'img/course-2.jpg' %}"  class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Marketing</p>
-                  <p class="price">$250</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Search Engine Optimization</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-2-2.jpg' %}"  class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Lana</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;35
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;42
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="course-item">
-              <img src="{% static 'img/course-2.jpg' %}"  class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <p class="category">Marketing</p>
-                  <p class="price">$250</p>
-                </div>
-
-                <h3><a href="{% url 'course_details' %}">Search Engine Optimization</a></h3>
-                <p class="description">Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainers/trainer-2-2.jpg' %}"  class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Lana</a>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;35
-                    &nbsp;&nbsp;
-                    <i class="bi bi-heart heart-icon"></i>&nbsp;42
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-        </div>
-      
-      
       </div>
 
     </section><!-- /Courses Section -->
 
   </main>
 
+  <!-- Footer -->
   <footer id="footer" class="footer position-relative light-background">
 
     <div class="container footer-top">
@@ -493,15 +427,138 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script  src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}" ></script>
-  <script  src="{% static 'vendor/php-email-form/validate.js' %}" ></script>
-  <script  src="{% static 'vendor/aos/aos.js' %}" ></script>
-  <script  src="{% static 'vendor/glightbox/js/glightbox.min.js' %}" ></script>
-  <script  src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}" ></script>
-  <script  src="{% static 'vendor/swiper/swiper-bundle.min.js' %}" ></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
 
   <!-- Main JS File -->
-  <script src="{% static 'js/main.js' %}" ></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+  <!-- Course Filtering Script -->
+  <script>
+    // Version ultra-simplifiée et garantie fonctionnelle
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Sélection des éléments
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const courseItems = document.querySelectorAll('.course-item');
+        const searchInput = document.getElementById('course-search');
+        const searchButton = document.querySelector('.search-button');
+    
+        // 2. Fonction de filtrage principale
+        function filterCourses() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+    
+            courseItems.forEach(item => {
+                const category = item.dataset.category;
+                const searchText = item.dataset.search.toLowerCase();
+                
+                const showItem = (activeFilter === 'all' || category === activeFilter) &&
+                               (searchTerm === '' || searchText.includes(searchTerm));
+                
+                item.style.display = showItem ? 'block' : 'none';
+            });
+    
+            // Réinitialiser les animations si AOS est utilisé
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
+            }
+        }
+    
+        // 3. Gestion des événements
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                filterCourses();
+            });
+        });
+    
+        searchInput.addEventListener('input', filterCourses);
+        searchButton.addEventListener('click', filterCourses);
+    
+        // 4. Désactiver les styles de focus
+        searchInput.addEventListener('focus', function() {
+            this.style.outline = 'none';
+            this.style.boxShadow = 'none';
+            this.style.borderColor = '#e0e0e0';
+        });
+    
+        // 5. Initialisation
+        document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+        filterCourses();
+    });
+  
+  </script>
+    
+  <style>
+    /* Style minimal et efficace */
+    .search-container {
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto 25px;
+    }
+    
+    .search-input {
+        width: 100%;
+        padding: 12px 50px 12px 20px;
+        border: 1px solid #e0e0e0 !important;
+        border-radius: 50px;
+        font-size: 1rem;
+        background: #f8f9fa;
+        transition: all 0.3s;
+    }
+    
+    .search-input:focus {
+        border-color: #e0e0e0 !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+    
+    .search-button {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #5fcf80;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    
+    .filter-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 25px;
+    }
+    
+    .filter-btn {
+        background: #5fcf80;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 8px 18px;
+        font-weight: 500;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+    
+    .filter-btn.active {
+        background: #3d8a58;
+    }
+  </style>
 
 </body>
 
