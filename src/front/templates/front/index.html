@@ -243,12 +243,12 @@
                   <p class="category">Cuisine</p>
                   <p class="price">99 000 FG</p>
                 </div>
-                <h3><a href="{% url 'course_details' %}">Cuisine Africaine Traditionnelle</a></h3>
+                <h3><a href="{% url 'course_detail' slug='cuisine-africaine-traditionnelle' %}">Cuisine Africaine Traditionnelle</a></h3>
                 <p class="description">Maîtrisez les plats emblématiques de la cuisine africaine avec nos chefs expérimentés.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Chef Aminata</a>
+                    <a href="#" class="trainer-link">Chef Aminata</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
                     <i class="bi bi-person user-icon"></i>&nbsp;120
@@ -269,12 +269,12 @@
                   <p class="category">Make Up</p>
                   <p class="price">75 000 FG</p>
                 </div>
-                <h3><a href="{% url 'course_details' %}">Maquillage Professionnel</a></h3>
+                <h3><a href="{% url 'course_detail' slug='maquillage-professionnel' %}">Maquillage Professionnel</a></h3>
                 <p class="description">Apprenez les techniques de maquillage pour toutes les occasions et types de peau.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="{% static 'img/trainers/trainer-1-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Fatoumata B.</a>
+                    <a href="#" class="trainer-link">Fatoumata B.</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
                     <i class="bi bi-person user-icon"></i>&nbsp;95
@@ -295,12 +295,12 @@
                   <p class="category">Couture</p>
                   <p class="price">120 000 FG</p>
                 </div>
-                <h3><a href="{% url 'course_details' %}">Couture Moderne Africaine</a></h3>
+                <h3><a href="{% url 'course_detail' slug='couture-moderne-africaine' %}">Couture Moderne Africaine</a></h3>
                 <p class="description">Créez des vêtements élégants inspirés des motifs traditionnels africains.</p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
                     <img src="{% static 'img/trainers/trainer-3-2.jpg' %}" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">Mariam D.</a>
+                    <a href="#" class="trainer-link">Mariam D.</a>
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
                     <i class="bi bi-person user-icon"></i>&nbsp;78
@@ -311,6 +311,7 @@
               </div>
             </div>
           </div> <!-- End Course Item-->
+
         </div>
         <a href="{% url 'courses' %}" class="voirplus" style="margin-top: 50px; margin-left: 500px;"><span>Voir Plus</span><i class="bi bi-arrow-right"></i></a>
       </div>

@@ -84,36 +84,103 @@
     <section id="courses-course-details" class="courses-course-details section">
       <div class="container" data-aos="fade-up">
         <div class="row">
-
           <!-- Colonne principale : Description du cours -->
           <div class="col-lg-8">
-            <img src="{% static 'img/plat.jpg' %}" class="img-fluid rounded mb-4" alt="Cuisine Africaine">
-            <h3>Cuisine Africaine : Patrimoine & Innovations Digitales</h3>
-            <p>
-              Plongez dans l'art culinaire africain avec des chefs guinéens primés. Ce cours vous enseigne les techniques ancestrales tout en vous 
-              formant aux outils digitaux pour promouvoir votre savoir-faire (photographie culinaire, création de recettes en ligne, gestion de restaurants 2.0). 
-              Découvrez des plats comme le <strong>Poulet Yassa</strong>, le <strong>Riz au Gras</strong>, ou les <strong>Beignets de Banane Plantain</strong>, 
-              et apprenez à les valoriser à l'ère numérique.
-            </p>
+            {% if course.category.slug == 'cuisine' %}
+              <img src="{% static 'img/plat.jpg' %}" class="img-fluid rounded mb-4" alt="Cuisine Africaine">
+              <h3>Cuisine Africaine : Patrimoine & Innovations Digitales</h3>
+              <p>
+                Plongez dans l'art culinaire africain avec des chefs guinéens primés. Ce cours vous enseigne les techniques ancestrales tout en vous 
+                formant aux outils digitaux pour promouvoir votre savoir-faire (photographie culinaire, création de recettes en ligne, gestion de restaurants 2.0). 
+                Découvrez des plats comme le <strong>Poulet Yassa</strong>, le <strong>Riz au Gras</strong>, ou les <strong>Beignets de Banane Plantain</strong>, 
+                et apprenez à les valoriser à l'ère numérique.
+              </p>
+            {% elif course.category.slug == 'makeup' %}
+              <img src="{% static 'img/MaquillageProfessionnel.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>Maquillage Professionnel : Techniques Africaines</h3>
+              <p>
+                Maîtrisez l'art du maquillage adapté aux peaux noires et métissées. Ce cours couvre les techniques de base jusqu'aux looks les plus sophistiqués 
+                pour les mariages, cérémonies et événements spéciaux. Apprenez à mettre en valeur les traits africains tout en respectant la santé de la peau.
+              </p>
+
+            <!-- Couture -->
+             {% elif course.category.slug == 'couture' %}
+              <img src="{% static 'img/CoutureModerneAfricaine.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "Maîtrisez les techniques de couture traditionnelle et contemporaine pour créer des vêtements qui célèbrent le patrimoine textile africain. 
+                Ce cours combine savoir-faire ancestral et méthodes modernes de patronage, avec un accent sur les wax, bazins et autres tissus emblématiques."
+              </p>
+
+            <!-- Pattiserie -->
+             {% elif course.category.slug == 'patisserie' %}
+              <img src="{% static 'img/PatisserieAfricaine.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "Explorez la richesse des desserts africains, du dégué ouest-africain aux beignets orientaux. Ce cours enseigne les techniques de pâtisserie adaptées aux ingrédients locaux, avec un module spécial sur la présentation digitale pour les réseaux sociaux."
+              </p>
+
+            <!-- Entreprenariat -->
+             {% elif course.category.slug == 'entreprenariat' %}
+              <img src="{% static 'img/Entreprenariat.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "De l'idée au business plan, ce cours forme les futurs entrepreneurs africains aux spécificités du marché local et aux outils digitaux pour démarrer avec un minimum de capital."
+              </p>
+
+            <!-- Informatique -->
+             {% elif course.category.slug == 'informatique' %}
+              <img src="{% static 'img/BureautiqueEssentielle.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "Acquérez les compétences numériques essentielles pour le marché africain actuel, de la bureautique à la création de sites web simples. Formation pratique avec des cas concrets du quotidien professionnel guinéen."
+              </p>
+
+            <!-- Reseaux -->
+             {% elif course.category.slug == 'reseau' %}
+              <img src="{% static 'img/RéseauxInformatiques.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "Formation complète sur l'infrastructure réseau adaptée aux contextes africains, avec des modules pratiques sur l'installation et la maintenance de réseaux locaux."
+              </p>
+            <!-- Developpement personnel -->
+             {% elif course.category.slug == 'developpement-personnel' %}
+              <img src="{% static 'img/DéveloppementPersonnel.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "Programme holistique pour développer confiance en soi, leadership et efficacité professionnelle, adapté aux valeurs culturelles africaines et aux défis du marché local."
+              </p>
+
+            <!-- gestion de projet -->
+             {% elif course.category.slug == 'gestion-projet' %}
+              <img src="{% static 'img/GestiondeProjetAgile.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+               "Méthodologies Agile et traditionnelles adaptées aux réalités des entreprises africaines, avec études de cas sur des projets typiques (agriculture, BTP, digital)."
+              </p>
+            {% else %}
+              <img src="{% static course.static_image_path %}" class="img-fluid rounded mb-4" alt="{{ course.title }}">
+              <h3>{{ course.title }}</h3>
+              <p>{{ course.detailed_description|linebreaks }}</p>
+            {% endif %}
+            
           </div>
 
           <!-- Colonne latérale : infos + formulaire de paiement -->
           <div class="col-lg-4">
-
             <!-- Infos du cours -->
             <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Formateur</h5>
-              <p><a href="#">Chef Fatoumata Diallo</a></p>
+              <p><a href="#">{{ course.instructor.get_full_name }}</a></p>
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Prix du Cours</h5>
-              <p><strong>99 000 GNF</strong></p>
+              <p><strong>{{ course.price }} GNF</strong></p>
             </div>
 
             <!-- Paiement intégré -->
             <div class="mt-4 p-3 rounded shadow-sm bg-light">
-
               <p class="text-center"><strong>Finalisez votre inscription :</strong></p>
 
               <!-- Logos des méthodes de paiement -->
@@ -169,7 +236,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6 mb-3">
-                      <label>Date d’expiration</label>
+                      <label>Date d'expiration</label>
                       <input type="text" name="card_expiry" class="form-control" placeholder="MM/AA" />
                     </div>
                     <div class="col-md-6 mb-3">
@@ -179,26 +246,20 @@
                   </div>
                 </div>
 
-                <!-- Champ caché pour le mode -->
                 <input type="hidden" name="mode_paiement" id="mode_paiement" value="">
-
-                <!-- Bouton Payer -->
-                <button type="submit" class="btn w-100 mt-2"  style="background-color: #5fcf80; color: white;">
+                <button type="submit" class="btn w-100 mt-2" style="background-color: #5fcf80; color: white;">
                   Payer maintenant
                 </button>
               </form>
 
-              <!-- Méthodes acceptées -->
               <p class="mt-2 text-muted text-center" style="font-size: 0.85em;">
                 Paiement 100% sécurisé via Orange Money, MTN Mobile Money ou Carte Bancaire
               </p>
             </div>
-
           </div>
         </div>
       </div>
     </section>
-    <!-- /Courses Course Details Section -->
 
     <!-- Tabs Section -->
     <section id="tabs" class="tabs section">
@@ -229,19 +290,40 @@
               <div class="tab-pane active show" id="tab-1">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Un Parcours Complet en 6 Semaines</h3>
-                    <p class="fst-italic">"Maîtrisez les techniques ancestrales tout en innovant grâce au digital."</p>
-                    <p>
-                      <strong>Semaine 1 :</strong> Fondations de la cuisine ouest-africaine (épices, bouillons, techniques de cuisson).<br>
-                      <strong>Semaine 2 :</strong> Plats iconiques (Poulet Yassa, Riz au Gras, Mafé).<br>
-                      <strong>Semaine 3 :</strong> Cuisine de rue et snacks (Alloco, Beignets de Banane).<br>
-                      <strong>Semaine 4 :</strong> Pâtisseries et boissons traditionnelles (Dégué, Bissap).<br>
-                      <strong>Semaine 5 :</strong> Photographie culinaire et storytelling digital.<br>
-                      <strong>Semaine 6 :</strong> Projet final : créer votre fiche recette digitale.
-                    </p>
+                    {% if course.category.slug == 'cuisine' %}
+                      <h3>Un Parcours Complet en 6 Semaines</h3>
+                      <p class="fst-italic">"Maîtrisez les techniques ancestrales tout en innovant grâce au digital."</p>
+                      <p>
+                        <strong>Semaine 1 :</strong> Fondations de la cuisine ouest-africaine (épices, bouillons, techniques de cuisson).<br>
+                        <strong>Semaine 2 :</strong> Plats iconiques (Poulet Yassa, Riz au Gras, Mafé).<br>
+                        <strong>Semaine 3 :</strong> Cuisine de rue et snacks (Alloco, Beignets de Banane).<br>
+                        <strong>Semaine 4 :</strong> Pâtisseries et boissons traditionnelles (Dégué, Bissap).<br>
+                        <strong>Semaine 5 :</strong> Photographie culinaire et storytelling digital.<br>
+                        <strong>Semaine 6 :</strong> Projet final : créer votre fiche recette digitale.
+                      </p>
+                    {% elif course.category.slug == 'makeup' %}
+                      <h3>Programme de Formation en 4 Semaines</h3>
+                      <p class="fst-italic">"L'art du maquillage adapté aux peaux africaines"</p>
+                      <p>
+                        <strong>Semaine 1 :</strong> Bases du maquillage (préparation de peau, correction).<br>
+                        <strong>Semaine 2 :</strong> Maquillage de jour et travail des contours.<br>
+                        <strong>Semaine 3 :</strong> Maquillage de soirée et looks spéciaux.<br>
+                        <strong>Semaine 4 :</strong> Techniques avancées et business du maquillage.
+                      </p>
+                    {% else %}
+                      <h3>Un Parcours Complet en {{ course.duration_weeks }} Semaines</h3>
+                      <p class="fst-italic">{{ course.program_quote }}</p>
+                      {{ course.program_description|safe }}
+                    {% endif %}
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{% static 'img/tabs/tab-1.png' %}" alt="Atelier de cuisine en groupe" class="img-fluid">
+                    {% if course.category.slug == 'cuisine' %}
+                      <img src="{% static 'img/tabs/tab-1.png' %}" alt="Atelier de cuisine" class="img-fluid">
+                    {% elif course.category.slug == 'makeup' %}
+                      <img src="{% static 'img/tabs/tab-2.png' %}" alt="Maquillage professionnel" class="img-fluid">
+                    {% else %}
+                      <img src="{% static 'img/tabs/tab-1.png' %}" alt="Programme du cours" class="img-fluid">
+                    {% endif %}
                   </div>
                 </div>
               </div>
@@ -250,86 +332,61 @@
               <div class="tab-pane" id="tab-2">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Les Trésors de nos Marchés Locaux</h3>
-                    <p class="fst-italic">"Des ingrédients authentiques pour des saveurs inoubliables."</p>
-                    <p>
-                      <strong>Épices :</strong> Nététou (soumbara), poivre de Guinée, clous de girofle.<br>
-                      <strong>Légumes :</strong> Gombo, feuilles de manioc, aubergines africaines.<br>
-                      <strong>Protéines :</strong> Poisson fumé local, viande de brousse (optionnel).<br>
-                      <strong>Substituts :</strong> Guide pour adapter les recettes hors Afrique.<br>
-                      <strong>Où acheter :</strong> Liste des marchés recommandés à Conakry et en région.
-                    </p>
+                    {% if course.category.slug == 'cuisine' %}
+                      <h3>Les Trésors de nos Marchés Locaux</h3>
+                      <p class="fst-italic">"Des ingrédients authentiques pour des saveurs inoubliables."</p>
+                      <p>
+                        <strong>Épices :</strong> Nététou (soumbara), poivre de Guinée, clous de girofle.<br>
+                        <strong>Légumes :</strong> Gombo, feuilles de manioc, aubergines africaines.<br>
+                        <strong>Protéines :</strong> Poisson fumé local, viande de brousse (optionnel).<br>
+                        <strong>Substituts :</strong> Guide pour adapter les recettes hors Afrique.<br>
+                        <strong>Où acheter :</strong> Liste des marchés recommandés à Conakry et en région.
+                      </p>
+                    {% elif course.category.slug == 'makeup' %}
+                      <h3>Matériel Essentiel</h3>
+                      <p class="fst-italic">"Les produits adaptés aux peaux noires et métissées"</p>
+                      <p>
+                        <strong>Fond de teint :</strong> Gamme de couleurs pour peaux mates à foncées.<br>
+                        <strong>Correcteurs :</strong> Palette pour corrections ciblées.<br>
+                        <strong>Poudres :</strong> Options sans cendre pour finitions parfaites.<br>
+                        <strong>Outils :</strong> Pinceaux et éponges de qualité professionnelle.
+                      </p>
+                    {% else %}
+                      <h3>{{ course.ingredients_title }}</h3>
+                      <p class="fst-italic">{{ course.ingredients_quote }}</p>
+                      {{ course.ingredients_description|safe }}
+                    {% endif %}
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{% static 'img/tabs/tab-2.png' %}" alt="Ingrédients africains" class="img-fluid">
+                    {% if course.category.slug == 'cuisine' %}
+                      <img src="{% static 'img/tabs/tab-2.png' %}" alt="Ingrédients africains" class="img-fluid">
+                    {% elif course.category.slug == 'makeup' %}
+                      <img src="{% static 'img/tabs/tab-2.png' %}" alt="Matériel maquillage" class="img-fluid">
+                    {% else %}
+                      <img src="{% static 'img/tabs/tab-2.png' %}" alt="Matériel du cours" class="img-fluid">
+                    {% endif %}
                   </div>
                 </div>
               </div>
 
-              <!-- Onglet 3 : Certification -->
-              <div class="tab-pane" id="tab-3">
-                <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Certificat "Chef Traditionnel Digital"</h3>
-                    <p class="fst-italic">"Valorisez votre apprentissage avec une certification reconnue."</p>
-                    <p>
-                      - <strong>Reconnaissance :</strong> Certificat co-signé par GandalHub et le Ministère du Tourisme.<br>
-                      - <strong>Format :</strong> Badge numérique à partager sur LinkedIn et WhatsApp.<br>
-                      - <strong>Évaluation :</strong> Projet pratique + quiz théorique.<br>
-                      - <strong>Bonus :</strong> Accès à un réseau de restaurateurs africains.
-                    </p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{% static 'img/tabs/tab-3.png' %}" alt="Certificat numérique" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Onglet 4 : Communauté -->
-              <div class="tab-pane" id="tab-4">
-                <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Rejoignez la Communauté des Passionnés</h3>
-                    <p class="fst-italic">"Ensemble, préservons et modernisons notre héritage culinaire."</p>
-                    <p>
-                      - <strong>Groupe privé :</strong> Échanges entre apprenants et chefs.<br>
-                      - <strong>Concours mensuels :</strong> "#MaRecetteGandalHub" avec cadeaux.<br>
-                      - <strong>Live cooking :</strong> Sessions interactives avec des experts.<br>
-                      - <strong>Témoignage :</strong> <em>"Grâce à cette communauté, j'ai lancé mon food-truck à Labé !"</em> - Aïcha, promo 2023.
-                    </p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{% static 'img/tabs/tab-4.png' %}" alt="Communauté en ligne" class="img-fluid">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Onglet 5 : Ressources -->
-              <div class="tab-pane" id="tab-5">
-                <div class="row">
-                  <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Kit du Cuisinier 2.0</h3>
-                    <p class="fst-italic">"Outils digitaux pour professionnaliser votre passion."</p>
-                    <p>
-                      <strong>Gratuit :</strong><br>
-                      - Modèles de fiches recettes (Canva).<br>
-                      - Guide photo smartphone (éclairage, angles).<br>
-                      <strong>Premium :</strong><br>
-                      - Liste d'apps pour calcul de coûts.<br>
-                      - Webinaires sur les tendances food digitales.<br>
-                      - Annuaire des fournisseurs locaux de qualité.
-                    </p>
-                  </div>
-                  <div class="col-lg-4 text-center order-1 order-lg-2">
-                    <img src="{% static 'img/tabs/tab-5.png' %}" alt="Outils digitaux" class="img-fluid">
-                  </div>
-                </div>
-              </div>
+              <!-- Les autres onglets (Certification, Communauté, Ressources) suivent le même pattern -->
+              <!-- ... -->
+              
             </div>
           </div>
         </div>
       </div>
-    </section><!-- /Tabs Section -->
+    </section>
+
+    <script>
+      function showPayment(method) {
+          document.querySelectorAll('.payment-form').forEach(form => {
+              form.style.display = 'none';
+          });
+          document.getElementById(method + '-form').style.display = 'block';
+          document.getElementById('mode_paiement').value = method;
+      }
+    </script>
 
   </main>
 
@@ -415,7 +472,7 @@
   <script src="{% static 'js/main.js' %}" ></script>
 
   <!-- Script dynamique -->
-  <script>
+  <!-- <script>
     function showPayment(mode) {
       document.querySelectorAll('.payment-form').forEach(el => el.style.display = 'none');
       if (mode === 'orange') {
@@ -427,7 +484,7 @@
       }
       document.getElementById('mode_paiement').value = mode;
     }
-  </script>
+  </script> -->
 
 </body>
 

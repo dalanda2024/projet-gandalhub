@@ -1,5 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.shortcuts import render, get_object_or_404
+from .models import Course, Category
+
+def courses(request):
+    courses = Course.objects.all().select_related('category', 'instructor')
+    categories = Category.objects.all()
+    return render(request, 'front/course_list.html', {
+        'courses': courses,
+        'categories': categories
+    })
+
+def course_detail(request, slug):
+    course = get_object_or_404(Course.objects.prefetch_related('modules', 'resources'), slug=slug)
+    context = {
+        'course': course,
+    }
+    return render(request, 'front/course_detail.html', context)
 
 
 def index(request):
@@ -11,11 +28,11 @@ def about(request):
 def contact(request):
     return render(request, 'front/contact.html')
 
-def course_details(request):
-    return render(request, 'front/course_details.html')
+# def course_details(request):
+#     return render(request, 'front/course_details.html')
 
-def courses(request):
-    return render(request, 'front/courses.html')
+# def courses(request):
+#     return render(request, 'front/courses.html')
 
 def events(request):
     return render(request, 'front/events.html')
