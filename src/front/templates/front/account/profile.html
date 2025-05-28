@@ -1,0 +1,205 @@
+{% extends "front/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link href="{% static 'css/profile.css' %}" rel="stylesheet">
+<link href="{% static 'css/progress.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="profile-section pt-5">
+    <div class="container">
+        <!-- En-tête du profil -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="profile-image me-4">
+                                {% if user.userprofile.profile_image %}
+                                    <img src="{{ user.userprofile.profile_image.url }}" alt="Photo de profil" class="rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+                                {% else %}
+                                    <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 150px; height: 150px;">
+                                        <i class="bi bi-person-circle fs-1 text-white"></i>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="profile-details">
+                                <h2 class="mb-2">{{ user.username }}</h2>
+                                <p class="text-muted mb-2"><i class="bi bi-envelope me-2"></i>{{ user.email }}</p>
+                                <p class="text-muted mb-3"><i class="bi bi-calendar me-2"></i>Membre depuis {{ user.date_joined|date:"F Y" }}</p>
+                                <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary"><i class="bi bi-pencil me-2"></i>Modifier le profil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progression -->
+        <div class="row mb-4">
+            <div class="col-lg-4">
+                <div class="card shadow text-center">
+                    <div class="card-body">
+                        <i class="bi bi-trophy fs-1 text-warning mb-3"></i>
+                        <h3>{{ user.quizzes_completed|default_if_none:"0" }}</h3>
+                        <p class="text-muted">Quiz terminés</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card shadow text-center">
+                    <div class="card-body">
+                        <i class="bi bi-graph-up fs-1 text-success mb-3"></i>
+                        <h3>{{ user.average_score|default_if_none:"0" }}%</h3>
+                        <p class="text-muted">Score moyen</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card shadow text-center">
+                    <div class="card-body">
+                        <i class="bi bi-clock-history fs-1 text-primary mb-3"></i>
+                        <h3>{{ user.total_time|default_if_none:"0" }}h</h3>
+                        <p class="text-muted">Temps d'apprentissage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions rapides -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Actions rapides</h4>
+                        <div class="d-flex gap-3">
+                            <a href="{% url 'quiz:quiz_list' %}" class="btn btn-primary">
+                                <i class="bi bi-play-circle me-2"></i>Commencer un quiz
+                            </a>
+                            <a href="{% url 'courses' %}" class="btn btn-outline-primary">
+                                <i class="bi bi-book me-2"></i>Voir les cours
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Évolution et Recommandations -->
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-white">
+                        <h4 class="mb-0">Votre évolution</h4>
+                    </div>
+                    <div class="card-body">
+                        {% for level, stats in user_progress.items %}
+                        <div class="mb-4">
+                            <h5>{{ level }}</h5>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-{{ stats.score|default:0|yesno:'success,warning,danger' }}" 
+                                     role="progressbar" 
+                                     data-width="{{ stats.score|default:0 }}"
+                                     style="width: {{ stats.score|default:0 }}%">
+                                    {{ stats.score|default:0 }}%
+                                </div>
+                            </div>
+                            <small class="text-muted">{{ stats.completed }} quiz terminés</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card shadow">
+                    <div class="card-header bg-white">
+                        <h4 class="mb-0">Recommandations</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if recommendations %}
+                            {% for rec in recommendations %}
+                            <div class="recommendation-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-lightbulb text-warning fs-4 me-2"></i>
+                                    <div>
+                                        <h6 class="mb-1">{{ rec.title }}</h6>
+                                        <p class="mb-2 text-muted small">{{ rec.description }}</p>
+                                        {% if rec.quiz %}
+                                        <a href="{% url 'quiz:start_quiz' rec.quiz.id %}" class="btn btn-sm btn-outline-primary">
+                                            Commencer ce quiz
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-muted">Complétez plus de quiz pour obtenir des recommandations personnalisées.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Derniers quiz complétés -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-white">
+                        <h4 class="mb-0">Derniers quiz complétés</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Quiz</th>
+                                        <th>Score</th>
+                                        <th>Date</th>
+                                        <th>Progression</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for quiz in recent_quizzes %}
+                                    {% with score=quiz.score|default:0 %}
+                                    <tr>
+                                        <td>{{ quiz.title }}</td>
+                                        <td>
+                                            <span class="badge 
+                                                {% if score >= 80 %}bg-success
+                                                {% elif score >= 50 %}bg-warning
+                                                {% else %}bg-danger
+                                                {% endif %}">
+                                                {{ score }}%
+                                            </span>
+                                        </td>
+                                        <td>{{ quiz.completed_at|date:"d/m/Y" }}</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-{{ score|default:0|yesno:'success,warning,danger' }}" 
+                                                     role="progressbar" 
+                                                     data-width="{{ score|default:0 }}"
+                                                     style="width: {{ score|default:0 }}%">
+                                                    {{ score|default:0 }}%
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'quiz:start_quiz' quiz.id %}" class="btn btn-sm btn-outline-primary">Réessayer</a>
+                                        </td>
+                                    </tr>
+                                    {% endwith %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

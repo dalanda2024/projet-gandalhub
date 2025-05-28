@@ -1,0 +1,71 @@
+<!-- quiz/templates/quiz/quiz_list.html -->
+{% extends "base.html" %}
+
+{% block title %}Liste des Quiz{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Liste des Quiz par Cours</h1>
+    
+    {% for course in courses %}
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-1">{{ course.title }}</h3>
+                {% if course.description %}
+                    <p class="mb-0 opacity-75">{{ course.description }}</p>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                {% if course.quiz_set.all %}
+                    <div class="row">
+                        {% for level in levels %}
+                            <div class="col-lg-4 col-md-6 mb-3">
+                                <h5 class="text-secondary">{{ level }}</h5>
+                                {% for quiz in course.quiz_set.all %}
+                                    {% if quiz.level == level %}
+                                        <div class="card mb-2 border-left-primary">
+                                            <div class="card-body p-3">
+                                                <h6 class="card-title">{{ quiz.title }}</h6>
+                                                {% if quiz.description %}
+                                                    <p class="card-text small text-muted">{{ quiz.description }}</p>
+                                                {% endif %}
+                                                <div class="btn-group" role="group">
+                                                    <a href="#" class="btn btn-outline-info btn-sm">
+                                                        Voir détails
+                                                    </a>
+                                                    <a href="{% url 'quiz:start_quiz' quiz.id %}" class="btn btn-primary btn-sm">
+                                                        {% if quiz.is_completed %}Revoir{% else %}Commencer{% endif %}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                
+                                <!-- Si aucun quiz pour ce niveau -->
+                                {% if not course.quiz_set.all|length %}
+                                    <div class="text-muted small">
+                                        <em>Aucun quiz disponible pour ce niveau</em>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        Aucun quiz disponible pour ce cours
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    
+    {% if not courses %}
+        <div class="alert alert-warning">
+            <h4>Aucun cours disponible</h4>
+            <p class="mb-0">Il n'y a actuellement aucun cours configuré dans le système.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

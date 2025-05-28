@@ -1,0 +1,18 @@
+[
+    {
+        "model": "quiz.course",
+        "pk": 1,
+        "fields": {
+            "title": "Python pour débutants",
+            "description": "Introduction à la programmation Python"
+        }
+    },
+    {
+        "model": "quiz.course",
+        "pk": 2,
+        "fields": {
+            "title": "JavaScript Fondamentaux",
+            "description": "Les bases du développement web avec JavaScript"
+        }
+    }
+]

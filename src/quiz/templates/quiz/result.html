@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link href="{% static 'css/profile.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Résultat du quiz : {{ quiz.title }}</h2>
+            <p class="lead">Score : {{ score }} / {{ total }}</p>
+            
+            <div class="quiz-progress">
+                <div class="quiz-progress-bar quiz-progress-{{ score_percent|default:0|yesno:'success,warning,danger' }}"
+                     role="progressbar" 
+                     data-progress="{{ score_percent }}">
+                    {{ score_percent }}%
+                </div>
+            </div>
+
+            <h3>Résultats détaillés</h3>
+            {% for question, correct, answer, explanation, user_answer in results %}
+                <div class="card mb-3 {% if correct %}border-success{% else %}border-danger{% endif %}">
+                    <div class="card-body">
+                        <h5>{{ question.text }}</h5>
+                        {% if correct %}
+                            <p class="text-success"><i class="bi bi-check-circle"></i> Bonne réponse !</p>
+                        {% else %}
+                            <p class="text-danger"><i class="bi bi-x-circle"></i> Votre réponse : {{ user_answer }}</p>
+                            <p class="text-success">Réponse correcte : {{ answer }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            
+            <div class="mt-4">
+                <a href="{% url 'quiz:quiz_list' %}" class="btn btn-secondary me-2">
+                    <i class="bi bi-arrow-left"></i> Retour aux quiz
+                </a>
+                <a href="{% url 'quiz:start_quiz' quiz.id %}" class="btn btn-primary">
+                    <i class="bi bi-arrow-repeat"></i> Recommencer
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

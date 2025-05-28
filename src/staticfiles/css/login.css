@@ -1,0 +1,188 @@
+/* AUTHENTIFICATION : Style inspiré de Udemy */
+
+/* Global Styles */
+/*body {
+    background-color: #f7f9fa;
+    font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container Styles */
+/*.auth-container {
+    background-color: #fff;
+    padding: 2rem 2.5rem; /* Espacement généreux */
+    /*border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Largeur maximale */
+    /* *text-align: center; */
+}
+
+/* Title and Subtitle */
+.auth-container h2 {
+    font-size: 1.5rem; /* Taille de police plus grande */
+    font-weight: 700; /* Texte en gras */
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.auth-container p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+/* Form Styles */
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espacement entre les champs */
+}
+
+.auth-container label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+    margin-bottom: 0.3rem;
+}
+
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #333;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.auth-container input[type="text"]:focus,
+.auth-container input[type="email"]:focus,
+.auth-container input[type="password"]:focus {
+    border-color: #a435f0; /* Couleur d'accent */
+    outline: none;
+}
+
+/* Button Styles */
+.auth-container button {
+    padding: 0.8rem;
+    background-color: #a435f0; /* Couleur principale */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-container button:hover {
+    background-color: #8710d8; /* Couleur au survol */
+}
+
+/* Links */
+.auth-container .links {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.auth-container .links a {
+    color: #a435f0;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-container .links a:hover {
+    text-decoration: underline;
+}
+
+/* Divider */
+.auth-container .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.auth-container .divider::before,
+.auth-container .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+    margin: 0 0.5rem;
+}
+
+/* Social Buttons */
+.auth-container .social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.auth-container .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.auth-container .social-btn.google {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.auth-container .social-btn.google:hover {
+    background-color: #f7f7f7;
+}
+
+.auth-container .social-btn.facebook {
+    background-color: #4267B2;
+    color: white;
+}
+
+.auth-container .social-btn.facebook:hover {
+    background-color: #365899;
+}
+
+.auth-container .social-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Alerts */
+.alert {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}

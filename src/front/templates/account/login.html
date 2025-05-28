@@ -1,0 +1,108 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - GandalHub</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <style>
+        .login-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            background-color: #f8f9fa;
+        }
+        
+        .login-image {
+            flex: 1;  /* Prend 50% */
+            background: url('https://img.freepik.com/free-photo/african-american-student-studying-online_53876-97063.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .login-panel {
+            flex: 1;  /* Prend 50% */
+            padding: 2rem;
+            background: white;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .login-image {
+                display: none;
+            }
+            .login-panel {
+                flex: 0 0 100%;
+                max-width: 480px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-image">
+            <!-- Image de fond à gauche -->
+        </div>
+        <div class="login-panel">
+            <div class="login-logo">
+                <img src="{% static 'img/logo_gandalhub1.png' %}" alt="GandalHub Logo">
+            </div>
+            <h2 class="form-title">Connexion à GandalHub</h2>
+            <p class="form-subtitle">Accédez à vos cours, quiz et plus encore.</p>
+
+            {% if form.errors %}
+                <div class="errors">
+                    <p>Erreur de connexion :</p>
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <form method="POST" action="{% url 'account_login' %}" class="form" style="width:100%;">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.login.label_tag }}
+                    {{ form.login }}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                </div>
+                <button type="submit" class="btn-primary">Connexion</button>
+            </form>
+
+            <a href="{% url 'account_reset_password' %}" class="help-link">Mot de passe oublié ?</a>
+
+            <div class="divider"><span>OU</span></div>
+
+            <div class="social-buttons">
+                <a href="{% provider_login_url 'google' %}" class="social-btn google">
+                    <img src="{% static 'img/google.png' %}" alt="Google"> Continuer avec Google
+                </a>
+                <a href="{% provider_login_url 'facebook' %}" class="social-btn facebook">
+                    <img src="{% static 'img/fb.png' %}" alt="Facebook"> Continuer avec Facebook
+                </a>
+            </div>
+
+            <div class="links">
+                <span>Vous n'avez pas de compte ?</span>
+                <a href="{% url 'account_signup' %}">Créer un compte</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

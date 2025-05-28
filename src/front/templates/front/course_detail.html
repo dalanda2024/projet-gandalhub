@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>GandalHub</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link  href="{% static 'img/logo_gandalhub1.png' %}" >
+  <link href="{% static 'img/logo_gandalhub1.png' %}" >
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="course-details-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="{% static 'img/logo_gandalhub1.png' %}" alt="logo_gandalhub">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'index' %}">Accueil<br></a></li>
+          <li><a href="{% url 'about' %}">A propos</a></li>
+          <li><a href="{% url 'courses' %}" >Cours</a></li>
+          <li><a href="{% url 'trainers' %}" >Formateurs</a></li>
+          <li><a href="{% url 'events' %}" >Événements</a></li>
+          <li><a href="{% url 'pricing' %}" >Tarifs</a></li>
+          <li><a href="{% url 'contact' %}" >Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Explorez les Détails du Cours</h1>
+              <p class="mb-0">Plongez dans le contenu pédagogique conçu pour répondre aux besoins des apprenants. Découvrez le programme, les objectifs et les ressources disponibles pour maîtriser cette compétence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+          <ol>
+            <li><a href="{% url 'index' %}">Accueil</a></li>
+            <li class="current">Détails cours</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Courses Course Details Section -->
+    <section id="courses-course-details" class="courses-course-details section">
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <!-- Colonne principale : Description du cours -->
+          <div class="col-lg-8">
+            {% if course.category.slug == 'cuisine' %}
+              <img src="{% static 'img/plat.jpg' %}" class="img-fluid rounded mb-4" alt="Cuisine Africaine">
+              <h3>Cuisine Africaine : Patrimoine & Innovations Digitales</h3>
+              <p>
+                Plongez dans l'art culinaire africain avec des chefs guinéens primés. Ce cours vous enseigne les techniques ancestrales tout en vous 
+                formant aux outils digitaux pour promouvoir votre savoir-faire (photographie culinaire, création de recettes en ligne, gestion de restaurants 2.0). 
+                Découvrez des plats comme le <strong>Poulet Yassa</strong>, le <strong>Riz au Gras</strong>, ou les <strong>Beignets de Banane Plantain</strong>, 
+                et apprenez à les valoriser à l'ère numérique.
+              </p>
+            {% elif course.category.slug == 'makeup' %}
+              <img src="{% static 'img/MaquillageProfessionnel.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>Maquillage Professionnel : Techniques Africaines</h3>
+              <p>
+                Maîtrisez l'art du maquillage adapté aux peaux noires et métissées. Ce cours couvre les techniques de base jusqu'aux looks les plus sophistiqués 
+                pour les mariages, cérémonies et événements spéciaux. Apprenez à mettre en valeur les traits africains tout en respectant la santé de la peau.
+              </p>
+
+            <!-- Couture -->
+             {% elif course.category.slug == 'couture' %}
+              <img src="{% static 'img/CoutureModerneAfricaine.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "Maîtrisez les techniques de couture traditionnelle et contemporaine pour créer des vêtements qui célèbrent le patrimoine textile africain. 
+                Ce cours combine savoir-faire ancestral et méthodes modernes de patronage, avec un accent sur les wax, bazins et autres tissus emblématiques."
+              </p>
+
+            <!-- Pattiserie -->
+             {% elif course.category.slug == 'patisserie' %}
+              <img src="{% static 'img/PatisserieAfricaine.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "Explorez la richesse des desserts africains, du dégué ouest-africain aux beignets orientaux. Ce cours enseigne les techniques de pâtisserie adaptées aux ingrédients locaux, avec un module spécial sur la présentation digitale pour les réseaux sociaux."
+              </p>
+
+            <!-- Entreprenariat -->
+             {% elif course.category.slug == 'entreprenariat' %}
+              <img src="{% static 'img/Entreprenariat.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "De l'idée au business plan, ce cours forme les futurs entrepreneurs africains aux spécificités du marché local et aux outils digitaux pour démarrer avec un minimum de capital."
+              </p>
+
+            <!-- Informatique -->
+             {% elif course.category.slug == 'informatique' %}
+              <img src="{% static 'img/BureautiqueEssentielle.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "Acquérez les compétences numériques essentielles pour le marché africain actuel, de la bureautique à la création de sites web simples. Formation pratique avec des cas concrets du quotidien professionnel guinéen."
+              </p>
+
+            <!-- Reseaux -->
+             {% elif course.category.slug == 'reseau' %}
+              <img src="{% static 'img/RéseauxInformatiques.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "Formation complète sur l'infrastructure réseau adaptée aux contextes africains, avec des modules pratiques sur l'installation et la maintenance de réseaux locaux."
+              </p>
+            <!-- Developpement personnel -->
+             {% elif course.category.slug == 'developpement-personnel' %}
+              <img src="{% static 'img/DéveloppementPersonnel.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+                "Programme holistique pour développer confiance en soi, leadership et efficacité professionnelle, adapté aux valeurs culturelles africaines et aux défis du marché local."
+              </p>
+
+            <!-- gestion de projet -->
+             {% elif course.category.slug == 'gestion-projet' %}
+              <img src="{% static 'img/GestiondeProjetAgile.jpg' %}" class="img-fluid rounded mb-4" alt="Make Up Professionnel">
+              <h3>{{ course.title }}</h3>
+              <p>
+               "Méthodologies Agile et traditionnelles adaptées aux réalités des entreprises africaines, avec études de cas sur des projets typiques (agriculture, BTP, digital)."
+              </p>
+            {% else %}
+              <img src="{% static course.static_image_path %}" class="img-fluid rounded mb-4" alt="{{ course.title }}">
+              <h3>{{ course.title }}</h3>
+              <p>{{ course.detailed_description|linebreaks }}</p>
+            {% endif %}
+            
+          </div>
+
+          <!-- Colonne latérale : infos + formulaire de paiement -->
+          <div class="col-lg-4">
+            <!-- Infos du cours -->
+            <div class="course-info d-flex justify-content-between align-items-center">
+              <h5>Formateur</h5>
+              <p><a href="#">{{ course.instructor.get_full_name }}</a></p>
+            </div>
+
+            <div class="course-info d-flex justify-content-between align-items-center">
+              <h5>Prix du Cours</h5>
+              <p><strong>{{ course.price }} GNF</strong></p>
+            </div>
+
+            <!-- Paiement intégré -->
+            <div class="mt-4 p-3 rounded shadow-sm bg-light">
+              <p class="text-center"><strong>Finalisez votre inscription :</strong></p>
+
+              <!-- Logos des méthodes de paiement -->
+              <div class="d-flex justify-content-around mb-3">
+                <button class="btn" onclick="showPayment('orange')" style="border: 2px solid #5fcf80; background-color: white;">
+                  <img src="{% static 'img/orange-money.jpg' %}" alt="Orange Money" style="height: 40px;">
+                </button>
+                <button class="btn" onclick="showPayment('mtn')" style="border: 2px solid #5fcf80; background-color: white;">
+                  <img src="{% static 'img/mtn-money.jpg' %}" alt="MTN Money" style="height: 40px;">
+                </button>
+                <button class="btn" onclick="showPayment('card')" style="border: 2px solid #5fcf80; background-color: white;">
+                  <img src="{% static 'img/paycard.jpg' %}" alt="Carte Bancaire" style="height: 40px;">
+                </button>
+              </div>
+
+              <!-- Formulaire de paiement -->
+              <form method="POST" action="#">
+                {% csrf_token %}
+
+                <!-- Orange Money -->
+                <div id="orange-form" class="payment-form" style="display: none;">
+                  <div class="mb-3">
+                    <label>Numéro Orange Money</label>
+                    <input type="tel" name="orange_phone" class="form-control" placeholder="Ex: +22462XXXXXXX" />
+                  </div>
+                  <div class="mb-3">
+                    <label>Code de confirmation</label>
+                    <input type="password" name="orange_code" class="form-control" placeholder="Code reçu par SMS" />
+                  </div>
+                </div>
+
+                <!-- MTN Mobile Money -->
+                <div id="mtn-form" class="payment-form" style="display: none;">
+                  <div class="mb-3">
+                    <label>Numéro MTN Money</label>
+                    <input type="tel" name="mtn_phone" class="form-control" placeholder="Ex: +22466XXXXXXX" />
+                  </div>
+                  <div class="mb-3">
+                    <label>Code PIN</label>
+                    <input type="password" name="mtn_code" class="form-control" placeholder="Votre code PIN" />
+                  </div>
+                </div>
+
+                <!-- Carte Bancaire -->
+                <div id="card-form" class="payment-form" style="display: none;">
+                  <div class="mb-3">
+                    <label>Numéro de carte</label>
+                    <input type="text" name="card_number" class="form-control" placeholder="Ex: 1234 5678" />
+                  </div>
+                  <div class="mb-3">
+                    <label>Nom sur la carte</label>
+                    <input type="text" name="card_name" class="form-control" placeholder="Ex: Mamadou Diallo" />
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label>Date d'expiration</label>
+                      <input type="text" name="card_expiry" class="form-control" placeholder="MM/AA" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label>Code de sécurité (CVV)</label>
+                      <input type="password" name="card_cvv" class="form-control" placeholder="123" />
+                    </div>
+                  </div>
+                </div>
+
+                <input type="hidden" name="mode_paiement" id="mode_paiement" value="">
+                <button type="submit" class="btn w-100 mt-2" style="background-color: #5fcf80; color: white;">
+                  Payer maintenant
+                </button>
+              </form>
+
+              <p class="mt-2 text-muted text-center" style="font-size: 0.85em;">
+                Paiement 100% sécurisé via Orange Money, MTN Mobile Money ou Carte Bancaire
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabs Section -->
+    <section id="tabs" class="tabs section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Programme Détaillé</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Ingrédients Clés</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Certification</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Communauté</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Ressources</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+              <!-- Onglet 1 : Programme Détaillé -->
+              <div class="tab-pane active show" id="tab-1">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    {% if course.category.slug == 'cuisine' %}
+                      <h3>Un Parcours Complet en 6 Semaines</h3>
+                      <p class="fst-italic">"Maîtrisez les techniques ancestrales tout en innovant grâce au digital."</p>
+                      <p>
+                        <strong>Semaine 1 :</strong> Fondations de la cuisine ouest-africaine (épices, bouillons, techniques de cuisson).<br>
+                        <strong>Semaine 2 :</strong> Plats iconiques (Poulet Yassa, Riz au Gras, Mafé).<br>
+                        <strong>Semaine 3 :</strong> Cuisine de rue et snacks (Alloco, Beignets de Banane).<br>
+                        <strong>Semaine 4 :</strong> Pâtisseries et boissons traditionnelles (Dégué, Bissap).<br>
+                        <strong>Semaine 5 :</strong> Photographie culinaire et storytelling digital.<br>
+                        <strong>Semaine 6 :</strong> Projet final : créer votre fiche recette digitale.
+                      </p>
+                    {% elif course.category.slug == 'makeup' %}
+                      <h3>Programme de Formation en 4 Semaines</h3>
+                      <p class="fst-italic">"L'art du maquillage adapté aux peaux africaines"</p>
+                      <p>
+                        <strong>Semaine 1 :</strong> Bases du maquillage (préparation de peau, correction).<br>
+                        <strong>Semaine 2 :</strong> Maquillage de jour et travail des contours.<br>
+                        <strong>Semaine 3 :</strong> Maquillage de soirée et looks spéciaux.<br>
+                        <strong>Semaine 4 :</strong> Techniques avancées et business du maquillage.
+                      </p>
+                    {% else %}
+                      <h3>Un Parcours Complet en {{ course.duration_weeks }} Semaines</h3>
+                      <p class="fst-italic">{{ course.program_quote }}</p>
+                      {{ course.program_description|safe }}
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    {% if course.category.slug == 'cuisine' %}
+                      <img src="{% static 'img/tabs/tab-1.png' %}" alt="Atelier de cuisine" class="img-fluid">
+                    {% elif course.category.slug == 'makeup' %}
+                      <img src="{% static 'img/tabs/tab-2.png' %}" alt="Maquillage professionnel" class="img-fluid">
+                    {% else %}
+                      <img src="{% static 'img/tabs/tab-1.png' %}" alt="Programme du cours" class="img-fluid">
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Onglet 2 : Ingrédients Clés -->
+              <div class="tab-pane" id="tab-2">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    {% if course.category.slug == 'cuisine' %}
+                      <h3>Les Trésors de nos Marchés Locaux</h3>
+                      <p class="fst-italic">"Des ingrédients authentiques pour des saveurs inoubliables."</p>
+                      <p>
+                        <strong>Épices :</strong> Nététou (soumbara), poivre de Guinée, clous de girofle.<br>
+                        <strong>Légumes :</strong> Gombo, feuilles de manioc, aubergines africaines.<br>
+                        <strong>Protéines :</strong> Poisson fumé local, viande de brousse (optionnel).<br>
+                        <strong>Substituts :</strong> Guide pour adapter les recettes hors Afrique.<br>
+                        <strong>Où acheter :</strong> Liste des marchés recommandés à Conakry et en région.
+                      </p>
+                    {% elif course.category.slug == 'makeup' %}
+                      <h3>Matériel Essentiel</h3>
+                      <p class="fst-italic">"Les produits adaptés aux peaux noires et métissées"</p>
+                      <p>
+                        <strong>Fond de teint :</strong> Gamme de couleurs pour peaux mates à foncées.<br>
+                        <strong>Correcteurs :</strong> Palette pour corrections ciblées.<br>
+                        <strong>Poudres :</strong> Options sans cendre pour finitions parfaites.<br>
+                        <strong>Outils :</strong> Pinceaux et éponges de qualité professionnelle.
+                      </p>
+                    {% else %}
+                      <h3>{{ course.ingredients_title }}</h3>
+                      <p class="fst-italic">{{ course.ingredients_quote }}</p>
+                      {{ course.ingredients_description|safe }}
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    {% if course.category.slug == 'cuisine' %}
+                      <img src="{% static 'img/tabs/tab-2.png' %}" alt="Ingrédients africains" class="img-fluid">
+                    {% elif course.category.slug == 'makeup' %}
+                      <img src="{% static 'img/tabs/tab-2.png' %}" alt="Matériel maquillage" class="img-fluid">
+                    {% else %}
+                      <img src="{% static 'img/tabs/tab-2.png' %}" alt="Matériel du cours" class="img-fluid">
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Les autres onglets (Certification, Communauté, Ressources) suivent le même pattern -->
+              <!-- ... -->
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function showPayment(method) {
+          document.querySelectorAll('.payment-form').forEach(form => {
+              form.style.display = 'none';
+          });
+          document.getElementById(method + '-form').style.display = 'block';
+          document.getElementById('mode_paiement').value = method;
+      }
+    </script>
+
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="{% url 'index' %}" class="logo d-flex align-items-center">
+            <img src="{% static 'img/logo_gandalhubnoir1.png' %}" alt="logo_gandalhub">
+          </a>
+          <div class="footer-contact pt-3">
+            
+            <p class="mt-3"><strong>Phone:</strong> <span>+224600000000</span></p>
+            <p><strong>Email:</strong> <span>gandalhub@example.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Liens utiles</h4>
+          <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">A propos de nous</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Politiques de confidentialité</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Nos Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Notre Newsletter</h4>
+          <p>S'abonner to our newsletter and receive the latest news about our products and services!</p>
+          <form action="forms/newsletter.php" method="post" class="php-email-form">
+            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="S'abonner"></div>
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">GandalHub</strong> <span>Tous droits reservés</span></p>
+      
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script  src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}" ></script>
+  <script  src="{% static 'vendor/php-email-form/validate.js' %}" ></script>
+  <script  src="{% static 'vendor/aos/aos.js' %}" ></script>
+  <script  src="{% static 'vendor/glightbox/js/glightbox.min.js' %}" ></script>
+  <script  src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}" ></script>
+  <script  src="{% static 'vendor/swiper/swiper-bundle.min.js' %}" ></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'js/main.js' %}" ></script>
+
+  <!-- Script dynamique -->
+  <!-- <script>
+    function showPayment(mode) {
+      document.querySelectorAll('.payment-form').forEach(el => el.style.display = 'none');
+      if (mode === 'orange') {
+        document.getElementById('orange-form').style.display = 'block';
+      } else if (mode === 'mtn') {
+        document.getElementById('mtn-form').style.display = 'block';
+      } else if (mode === 'card') {
+        document.getElementById('card-form').style.display = 'block';
+      }
+      document.getElementById('mode_paiement').value = mode;
+    }
+  </script> -->
+
+</body>
+
+</html>
